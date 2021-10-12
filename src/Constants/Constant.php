@@ -58,7 +58,7 @@ abstract class Constant
     }
 
     /**
-     * @param int | string $id
+     * @param int|string $id
      *
      * @return mixed
      */
