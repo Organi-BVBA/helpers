@@ -9,6 +9,7 @@ pipelines:
           - apt-get update && apt-get install -qy git curl libmcrypt-dev libxml2-dev wget libzip-dev libpng-dev
           - docker-php-ext-install bcmath zip gd
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          - composer install
           - composer global require "squizlabs/php_codesniffer=*"
           - composer global require "friendsofphp/php-cs-fixer"
           - ~/.composer/vendor/bin/phpcs -n
