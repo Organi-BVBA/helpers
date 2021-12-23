@@ -46,4 +46,12 @@ class Constant implements Rule
     {
         return 'Invalid constant value. Possible values are: ' . $this->class::all()->implode(', ');
     }
+
+    /**
+     * Return description for every constant in this class.
+     */
+    public static function descriptions(): array
+    {
+        return [];
+    }
 }
