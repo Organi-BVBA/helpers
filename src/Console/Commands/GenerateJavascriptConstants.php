@@ -50,6 +50,9 @@ class GenerateJavascriptConstants extends Command
 
             $out = '';
             foreach ($constant::all() as $key => $value) {
+                if (is_string($value)) {
+                    $value = "'{$value}'";
+                }
                 $out .= "export const {$key} = {$value};\n\n";
             }
 
