@@ -36,6 +36,11 @@ abstract class Constant
         return collect($c->getConstants());
     }
 
+    /**
+     * Pretty much the same as the description function
+     * But this function falls back to the constant name
+     * If no description is defined in the descriptions array.
+     */
     public static function dictionary(): Collection
     {
         $c = new ReflectionClass(static::class);
@@ -52,12 +57,18 @@ abstract class Constant
         return collect($out);
     }
 
+    /**
+     * Returns an array with descriptions.
+     * The key of the array should be the value of the constant.
+     */
     public static function descriptions(): array
     {
         return [];
     }
 
     /**
+     * Return a description for a specific value.
+     *
      * @param int|string $id
      *
      * @return mixed
