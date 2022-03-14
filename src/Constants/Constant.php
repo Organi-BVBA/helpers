@@ -14,7 +14,17 @@ abstract class Constant
     }
 
     /**
-     * @param string | int $id
+     * @return int|string
+     */
+    public static function random()
+    {
+        $c = new ReflectionClass(static::class);
+
+        return array_rand($c->getConstants());
+    }
+
+    /**
+     * @param int|string $id
      */
     public static function exists($id): bool
     {
@@ -24,9 +34,11 @@ abstract class Constant
     }
 
     /**
-     * @param string | int $id
+     * @param int|string $id
+     *
+     * @return int|string
      */
-    public static function find($id): int
+    public static function find($id)
     {
         $c = new ReflectionClass(static::class);
 
