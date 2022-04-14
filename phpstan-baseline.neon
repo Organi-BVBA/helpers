@@ -1,7 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to static method notifyException\\(\\) on an unknown class Bugsnag\\\\BugsnagLaravel\\\\Facades\\\\Bugsnag\\.$#"
-			count: 1
-			path: src/Console/Commands/TestBugsnag.php
-
