@@ -2,9 +2,9 @@
 
 namespace Organi\Helpers\Tests;
 
-use Organi\Helpers\HelpersServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Organi\Helpers\HelpersServiceProvider;
 
 /**
  * @internal

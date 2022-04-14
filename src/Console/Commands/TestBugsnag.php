@@ -2,9 +2,9 @@
 
 namespace Organi\Helpers\Console\Commands;
 
-use RuntimeException;
-use Illuminate\Console\Command;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
+use Illuminate\Console\Command;
+use RuntimeException;
 
 class TestBugsnag extends Command
 {

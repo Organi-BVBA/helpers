@@ -2,9 +2,9 @@
 
 namespace Organi\Helpers\Rules;
 
-use RuntimeException;
 use Illuminate\Contracts\Validation\Rule;
 use Organi\Helpers\Constants\Constant as OrganiConstant;
+use RuntimeException;
 
 class Constant implements Rule
 {
