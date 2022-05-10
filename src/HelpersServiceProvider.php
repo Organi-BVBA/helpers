@@ -2,11 +2,11 @@
 
 namespace Organi\Helpers;
 
-use Spatie\LaravelPackageTools\Package;
-use Organi\Helpers\Console\Commands\TestMail;
-use Organi\Helpers\Console\Commands\TestBugsnag;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Organi\Helpers\Console\Commands\GenerateJavascriptConstants;
+use Organi\Helpers\Console\Commands\TestBugsnag;
+use Organi\Helpers\Console\Commands\TestMail;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class HelpersServiceProvider extends PackageServiceProvider
 {

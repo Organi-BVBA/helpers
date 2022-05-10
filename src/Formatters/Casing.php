@@ -21,7 +21,7 @@ class Casing
         }
 
         $this->from = $from;
-        $this->to   = $to;
+        $this->to = $to;
     }
 
     public function convert(string $value): string
