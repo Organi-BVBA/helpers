@@ -27,17 +27,21 @@ class Casing
     public function convert(string $value): string
     {
         if (CaseStyle::CAMEL === $this->from && CaseStyle::SPACES === $this->to) {
-            return $this->camelToSpaces($value);
+            return $this->toSpaces($value);
+        }
+
+        if (CaseStyle::PASCAL === $this->from && CaseStyle::SPACES === $this->to) {
+            return $this->toSpaces($value);
         }
 
         if (CaseStyle::KEBAB === $this->from && CaseStyle::CAMEL === $this->to) {
             return $this->kebabToCamel($value);
         }
 
-        throw new \RuntimeException('Convertion not implemented yet');
+        throw new \RuntimeException('Conversion not implemented yet');
     }
 
-    protected function camelToSpaces(string $value): string
+    protected function toSpaces(string $value): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $value));
     }
