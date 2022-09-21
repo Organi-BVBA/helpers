@@ -58,7 +58,11 @@ class GenerateJavascriptConstants extends Command
 
             $keys = $constant::all()->keys();
 
-            $out .= 'export default { ' . $keys->implode(', ') . ' };';
+            $out .= $this->generateDescriptionFunction($constant);
+
+            $out .= 'export default { ' . $keys->implode(', ') . ', description };';
+
+
 
             $filename = "{$basepath}{$name}.js";
 
@@ -70,5 +74,32 @@ class GenerateJavascriptConstants extends Command
         }
 
         return 0;
+    }
+
+    private function generateDescriptionFunction($constant): string
+    {
+        $out = "function description ( type ) {\n";
+
+        foreach ($constant::all() as $name => $value) {
+            $description = $constant::description($value);
+
+            if (is_null($description)) {
+                continue;
+            }
+
+            $out .= "\tif ( type === $name ) {\n";
+            $out .= "\t\treturn {\n";
+
+            foreach ($description->translations() as $locale => $value) {
+                $out .= "\t\t\t$locale: '$value',\n";
+            }
+
+            $out .= "\t\t}\n";
+            $out .= "\t}\n\n";
+        }
+
+        $out .= "}\n";
+
+        return $out;
     }
 }
