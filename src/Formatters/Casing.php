@@ -34,6 +34,14 @@ class Casing
             return $this->toSpaces($value);
         }
 
+        if (CaseStyle::CAMEL === $this->from && CaseStyle::SNAKE === $this->to) {
+            return $this->toUnderscores($value);
+        }
+
+        if (CaseStyle::PASCAL === $this->from && CaseStyle::SNAKE === $this->to) {
+            return $this->toUnderscores($value);
+        }
+
         if (CaseStyle::KEBAB === $this->from && CaseStyle::CAMEL === $this->to) {
             return $this->kebabToCamel($value);
         }
@@ -43,7 +51,17 @@ class Casing
 
     protected function toSpaces(string $value): string
     {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $value));
+        return $this->addSingleCharacter($value, ' ');
+    }
+
+    protected function toUnderscores(string $value): string
+    {
+        return $this->addSingleCharacter($value, '_');
+    }
+
+    private function addSingleCharacter(string $value, string $character): string
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', $character . '$0', $value));
     }
 
     protected function kebabToCamel(string $value): string
