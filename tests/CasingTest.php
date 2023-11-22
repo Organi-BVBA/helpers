@@ -7,17 +7,17 @@ it('can\'t convert invalid type', function () {
     $converter = new Casing('invalid', CaseStyle::SPACES);
 })->throws(\RuntimeException::class);
 
-        // if (CaseStyle::CAMEL === $this->from && CaseStyle::SPACES === $this->to) {
-        // if (CaseStyle::CAMEL === $this->from && CaseStyle::SNAKE === $this->to) {
-        // if (CaseStyle::CAMEL === $this->from && CaseStyle::KEBAB === $this->to) {
-        // if (CaseStyle::KEBAB === $this->from && CaseStyle::CAMEL === $this->to) {
-        // if (CaseStyle::PASCAL === $this->from && CaseStyle::SPACES === $this->to) {
-        // if (CaseStyle::PASCAL === $this->from && CaseStyle::SNAKE === $this->to) {
-        // if (CaseStyle::PASCAL === $this->from && CaseStyle::KEBAB === $this->to) {
-        // if (CaseStyle::SNAKE === $this->from && CaseStyle::KEBAB === $this->to) {
+// if (CaseStyle::CAMEL === $this->from && CaseStyle::SPACES === $this->to) {
+// if (CaseStyle::CAMEL === $this->from && CaseStyle::SNAKE === $this->to) {
+// if (CaseStyle::CAMEL === $this->from && CaseStyle::KEBAB === $this->to) {
+// if (CaseStyle::KEBAB === $this->from && CaseStyle::CAMEL === $this->to) {
+// if (CaseStyle::PASCAL === $this->from && CaseStyle::SPACES === $this->to) {
+// if (CaseStyle::PASCAL === $this->from && CaseStyle::SNAKE === $this->to) {
+// if (CaseStyle::PASCAL === $this->from && CaseStyle::KEBAB === $this->to) {
+// if (CaseStyle::SNAKE === $this->from && CaseStyle::KEBAB === $this->to) {
 
 
-            // From pascal
+// From pascal
 it('can convert pascal to spaces', function () {
     $value = 'CanConvertPascalToSpaces';
 
