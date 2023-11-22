@@ -4,11 +4,11 @@ namespace Organi\Helpers\Formatters;
 
 use Organi\Helpers\Constants\CaseStyle;
 
-class Casing
+final class Casing
 {
-    protected string $from;
+    private string $from;
 
-    protected string $to;
+    private string $to;
 
     public function __construct(string $from, string $to)
     {
@@ -27,51 +27,61 @@ class Casing
     public function convert(string $value): string
     {
         if (CaseStyle::CAMEL === $this->from && CaseStyle::SPACES === $this->to) {
-            return $this->toSpaces($value);
+            return $this->addSingleCharacterBeforeCapitalLetter($value, ' ');
         }
 
         if (CaseStyle::PASCAL === $this->from && CaseStyle::SPACES === $this->to) {
-            return $this->toSpaces($value);
+            return $this->addSingleCharacterBeforeCapitalLetter($value, ' ');
         }
 
         if (CaseStyle::CAMEL === $this->from && CaseStyle::SNAKE === $this->to) {
-            return $this->toUnderscores($value);
+            return $this->addSingleCharacterBeforeCapitalLetter($value, '_');
         }
 
         if (CaseStyle::PASCAL === $this->from && CaseStyle::SNAKE === $this->to) {
-            return $this->toUnderscores($value);
+            return $this->addSingleCharacterBeforeCapitalLetter($value, '_');
+        }
+
+        if (CaseStyle::CAMEL === $this->from && CaseStyle::KEBAB === $this->to) {
+            return $this->addSingleCharacterBeforeCapitalLetter($value, '-');
+        }
+
+        if (CaseStyle::PASCAL === $this->from && CaseStyle::KEBAB === $this->to) {
+            return $this->addSingleCharacterBeforeCapitalLetter($value, '-');
         }
 
         if (CaseStyle::KEBAB === $this->from && CaseStyle::CAMEL === $this->to) {
-            return $this->kebabToCamel($value);
+            return $this->removeCharacterAndCapitalizeNextLetter($value, '-');
+        }
+
+        if (CaseStyle::SNAKE === $this->from && CaseStyle::KEBAB === $this->to) {
+            return str_replace('_', '-', $value);
+        }
+
+        if (CaseStyle::SPACES === $this->from && CaseStyle::KEBAB === $this->to) {
+            return str_replace(' ', '-', $value);
         }
 
         throw new \RuntimeException('Conversion not implemented yet');
     }
 
-    protected function toSpaces(string $value): string
+    private function removeCharacterAndCapitalizeNextLetter(string $value, string $character): string
     {
-        return $this->addSingleCharacter($value, ' ');
+        while ($pos = strpos($value, $character)) {
+            // Remove the '-'
+            $value = substr_replace($value, '', $pos, 1);
+
+            // Replace the character after the '-' with an uppercase
+            $value[$pos] = chr(ord($value[$pos]) - 32);
+        }
+
+        return $value;
     }
 
-    protected function toUnderscores(string $value): string
-    {
-        return $this->addSingleCharacter($value, '_');
-    }
 
-    private function addSingleCharacter(string $value, string $character): string
+
+    private function addSingleCharacterBeforeCapitalLetter(string $value, string $character): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', $character . '$0', $value));
-    }
-
-    protected function kebabToCamel(string $value): string
-    {
-        $arr = explode('-', $value);
-
-        $arr = array_map(function ($key, $item) {
-            return (0 === $key) ? $item : ucfirst($item);
-        }, array_keys($arr), $arr);
-
-        return implode('', $arr);
     }
 }
